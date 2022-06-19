@@ -1,0 +1,22 @@
+.logo-container {
+  height: 44px;
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .logo-title {
+    margin-left: 10px;
+    color: #fff;
+    font-weight: 600;
+    line-height: 50px;
+    font-size: 16px;
+    white-space: nowrap;
+  }
+
+  .logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 3px;
+  }
+}

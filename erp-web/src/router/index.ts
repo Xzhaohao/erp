@@ -40,9 +40,15 @@ export const privateRoutes: Array<RouteRecordRaw> = [
     children: [
       {
         path: '/sys/role',
-        name: 'userManage',
+        name: 'roleList',
         component: () => import('@/views/role-list/index.vue'),
         meta: { title: '角色管理' }
+      },
+      {
+        path: '/sys/user',
+        name: 'userList',
+        component: () => import('@/views/user-list/index.vue'),
+        meta: { title: '员工管理' }
       }
     ]
   }

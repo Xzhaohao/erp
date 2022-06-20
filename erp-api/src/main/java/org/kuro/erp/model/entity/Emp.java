@@ -26,6 +26,9 @@ public class Emp implements Serializable {
     @ApiModelProperty(value = "姓名")
     private String name;
 
+    @ApiModelProperty(value = "邮箱")
+    private String email;
+
     @ApiModelProperty(value = "手机号")
     private String mobile;
 
@@ -35,6 +38,7 @@ public class Emp implements Serializable {
     @ApiModelProperty(value = "1男，2女")
     private Integer gender;
 
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Shanghai")
     @ApiModelProperty(value = "生日")
     private Date birthday;
 

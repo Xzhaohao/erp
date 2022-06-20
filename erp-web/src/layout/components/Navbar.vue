@@ -9,7 +9,7 @@
       <!-- 头像 -->
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
-          <el-avatar shape="square" :size="40" src="$store.getters.userInfo.avatar"/>
+          <el-avatar shape="square" :size="40" src="https://nlgc-api.oss-cn-shenzhen.aliyuncs.com/avatar/2.png"/>
           <el-icon><Tools /></el-icon>
         </div>
         <template #dropdown>

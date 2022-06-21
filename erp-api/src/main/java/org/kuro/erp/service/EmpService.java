@@ -2,6 +2,7 @@ package org.kuro.erp.service;
 
 import org.kuro.erp.model.entity.Emp;
 import org.kuro.erp.model.page.PageResult;
+import org.kuro.erp.model.vo.EmpVo;
 
 public interface EmpService {
 
@@ -34,7 +35,7 @@ public interface EmpService {
      * @param depName 部门名称
      * @return 员工列表
      */
-    PageResult<Emp> queryEmpList(
+    PageResult<EmpVo> queryEmpList(
             Integer page, Integer limit, String name, String mobile,
             Integer gender, String depName
     );

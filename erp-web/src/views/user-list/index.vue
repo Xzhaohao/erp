@@ -52,9 +52,10 @@
         <el-table-column prop="birthday" label="生日" align="center" width="120"/>
         <el-table-column prop="stateText" label="状态" align="center" width="80"/>
         <el-table-column prop="depName" label="部门" align="center" width="100"/>
-        <el-table-column label="操作" width="120" align="center" #default="{ row }">
-          <el-button @click="showDialog(2, row)" link size="small" type="primary">修改</el-button>
-          <el-button link size="small" type="primary">删除</el-button>
+        <el-table-column label="操作" width="170" align="center" #default="{ row }">
+          <el-button @click="showDialog(2, row)" link size="small" type="warning">修改</el-button>
+          <el-button @click="onShowRole(row)" link size="small" type="success">分配角色</el-button>
+          <el-button link size="small" type="danger">删除</el-button>
         </el-table-column>
       </el-table>
 
@@ -69,14 +70,19 @@
       />
     </el-card>
 
+    <!-- 添加/修改员工信息 对话框 -->
     <add-update />
+    <!-- 分配角色 对话框 -->
+    <roles-dialog v-model='roleDialogVisible' :role='selectUserRole'/>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import { Plus, Delete } from '@element-plus/icons-vue'
 import Pagination from '@/components/Pagination/index.vue'
 import AddUpdate from './AddUpdate.vue'
+import RolesDialog from './Roles.vue'
 
 // 获取数据
 import {
@@ -96,6 +102,14 @@ import {
 import { showDialog } from './useDialog'
 
 fetchEmpList()
+
+// 分配角色
+const selectUserRole = ref([])
+const roleDialogVisible = ref(false)
+const onShowRole = (row: any) => {
+  roleDialogVisible.value = true
+  selectUserRole.value = row.roles
+}
 </script>
 
 <style scoped lang="scss">

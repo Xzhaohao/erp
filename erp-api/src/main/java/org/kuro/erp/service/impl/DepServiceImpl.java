@@ -24,4 +24,10 @@ public class DepServiceImpl implements DepService {
         PageInfo<Dep> info = new PageInfo<>(deps);
         return new PageResult<>(info.getTotal(), deps);
     }
+
+
+    @Override
+    public List<Dep> allDep() {
+        return depMapper.selectAllNormal();
+    }
 }

@@ -1,4 +1,6 @@
 import { ref } from 'vue'
+import { fetchAllDepApi } from '@/api/dep'
+import type { FormInstance } from 'element-plus/es'
 
 interface empFormData {
   name: string;
@@ -16,6 +18,7 @@ interface empFormData {
 const title = ref<String>('')
 const ac = ref<Number>()
 const dialogVisible = ref<Boolean>(false)
+const deps = ref<Array<any>>([])
 
 const empForm = ref<empFormData>({
   name: '',
@@ -29,6 +32,13 @@ const empForm = ref<empFormData>({
   birthday: '',
   nation: ''
 })
+
+// 获取所有状态正常的部门
+function fetchAllDep() {
+  fetchAllDepApi().then((res: any) => {
+    deps.value = res
+  })
+}
 
 /**
  * 点击添加/修改员工按钮
@@ -55,6 +65,14 @@ function showDialog(type: Number, data?: any) {
     }
   }
   dialogVisible.value = true
+  fetchAllDep()
+}
+
+// 关闭弹窗，并重置表单
+function closedDialog(empFormEl: FormInstance | undefined) {
+  dialogVisible.value = false
+  if (!empFormEl) return
+  empFormEl.resetFields()
 }
 
 export {
@@ -62,5 +80,7 @@ export {
   ac,
   dialogVisible,
   empForm,
-  showDialog
+  deps,
+  showDialog,
+  closedDialog
 }

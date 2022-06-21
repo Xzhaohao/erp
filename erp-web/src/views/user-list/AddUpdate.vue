@@ -56,8 +56,7 @@
         <el-col :span="12">
           <el-form-item label="部门" prop="depName">
             <el-select v-model="empForm.depName" placeholder="部门">
-              <el-option label="男" value="1"/>
-              <el-option label="女" value="2"/>
+              <el-option :label="item['name']" :value="item['name']" v-for="item in deps" :key="item.id"/>
             </el-select>
           </el-form-item>
         </el-col>
@@ -73,8 +72,7 @@
         <el-col :span="12">
           <el-form-item label="民族" prop="nation">
             <el-select v-model="empForm.nation" placeholder="民族">
-              <el-option label="男" value="1"/>
-              <el-option label="女" value="2"/>
+              <el-option :label="item" :value="item" v-for="item in nation" :key="item"/>
             </el-select>
           </el-form-item>
         </el-col>
@@ -82,23 +80,21 @@
     </el-form>
 
     <template #footer>
-      <el-button @click="dialogVisible = false">取消</el-button>
-      <el-button type="success">提交</el-button>
+      <el-button @click="closedDialog(empFormRef)">取消</el-button>
+      <el-button @click="submit(empFormRef)" type="success">提交</el-button>
     </template>
   </el-dialog>
 </template>
 
 <script setup lang="ts">
-import { defineProps, PropType } from 'vue'
-import { title, ac, dialogVisible, empForm } from './useDialog'
+import { ref } from 'vue'
+import { title, ac, dialogVisible, empForm, deps, closedDialog } from './useDialog'
 import { empRules } from './useDialogRules'
+import { submit } from './useDialogSubmit'
+import { nation } from '@/constant/nation'
+import type { FormInstance } from 'element-plus'
 
-defineProps({
-  data: {
-    type: Object as PropType<object>,
-    require: false
-  }
-})
+const empFormRef = ref<FormInstance>()
 </script>
 
 <style scoped lang="scss">

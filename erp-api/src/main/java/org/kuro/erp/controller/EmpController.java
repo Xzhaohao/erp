@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiParam;
 import org.kuro.erp.model.entity.Emp;
 import org.kuro.erp.model.page.PageResult;
 import org.kuro.erp.model.result.Result;
+import org.kuro.erp.model.vo.EmpVo;
 import org.kuro.erp.service.EmpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,7 +38,7 @@ public class EmpController {
             @ApiParam(name = "depName", value = "部门名称")
             @RequestParam(value = "depName", required = false) String depName
     ) {
-        PageResult<Emp> result = empService.queryEmpList(page, limit, name, mobile, gender, depName);
+        PageResult<EmpVo> result = empService.queryEmpList(page, limit, name, mobile, gender, depName);
         return Result.ok().data(result);
     }
 }

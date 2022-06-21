@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.kuro.erp.mapper.EmpRoleMapper">
+
+    <select id="selectEmpRoleByEmpId" resultType="org.kuro.erp.model.entity.EmpRole">
+        select id, emp_id, role_id, create_time, update_time
+        from sys_emp_role
+        where emp_id = #{empId};
+    </select>
+
+
+    <delete id="deleteByEmpId">
+        delete from sys_emp_role where emp_id = #{empId}
+    </delete>
+
+</mapper>

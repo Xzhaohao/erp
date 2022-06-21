@@ -24,7 +24,9 @@
         <el-table-column type="index" label="序号" width="60" align="center"/>
         <el-table-column prop="name" label="部门名称" align="center"/>
         <el-table-column prop="tele" label="电话" align="center"/>
-        <el-table-column prop="statusText" label="状态" align="center"/>
+        <el-table-column label="状态" align="center" #default="{ row }" width="100">
+          <tag-status :title="row['statusText']" :status="Number(row['status'])" />
+        </el-table-column>
         <el-table-column prop="createTime" label="创建时间" align="center"/>
         <el-table-column label="操作" width="140" align="center">
           <el-button link size="small" type="primary">修改</el-button>
@@ -47,6 +49,7 @@
 
 <script setup lang="ts">
 import Pagination from '@/components/Pagination/index.vue'
+import TagStatus from '@/components/tag-status/'
 // 获取数据
 import {
   list,

@@ -9,4 +9,6 @@ import java.util.List;
 public interface DepMapper extends Mapper<Dep> {
 
     List<Dep> selectDepList(@Param("tele") String tele, @Param("depName") String depName);
+
+    List<Dep> selectAllNormal();
 }

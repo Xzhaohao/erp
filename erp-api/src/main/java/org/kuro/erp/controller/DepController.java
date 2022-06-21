@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/dep")
 @Api(value = "部门管理模块", tags = "部门管理")
@@ -35,5 +37,13 @@ public class DepController {
     ) {
         PageResult<Dep> result = depService.depList(page, limit, depName, tele);
         return Result.ok().data(result);
+    }
+
+
+    @ApiOperation(value = "所有部门", notes = "获取所有状态正常的部门")
+    @GetMapping("/all")
+    public Result allDep() {
+        List<Dep> deps = depService.allDep();
+        return Result.ok().data(deps);
     }
 }

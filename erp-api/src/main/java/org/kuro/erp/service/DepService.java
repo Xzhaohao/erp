@@ -3,6 +3,8 @@ package org.kuro.erp.service;
 import org.kuro.erp.model.entity.Dep;
 import org.kuro.erp.model.page.PageResult;
 
+import java.util.List;
+
 public interface DepService {
 
     /**
@@ -15,4 +17,12 @@ public interface DepService {
      * @return 部门分页信息列表
      */
     PageResult<Dep> depList(Integer page, Integer limit, String depName, String tele);
+
+
+    /**
+     * 获取所有可用部门
+     *
+     * @return 部门列表
+     */
+    List<Dep> allDep();
 }

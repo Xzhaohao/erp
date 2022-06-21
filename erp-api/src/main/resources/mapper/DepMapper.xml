@@ -14,4 +14,12 @@
         </if>
         ORDER BY create_time DESC
     </select>
+
+
+    <select id="selectAllNormal" resultType="org.kuro.erp.model.entity.Dep">
+        select id, name, tele, status, create_time, update_time
+        from t_dep
+        WHERE status = 0
+        ORDER BY create_time DESC
+    </select>
 </mapper>

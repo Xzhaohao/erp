@@ -1,16 +1,16 @@
 import { ElMessage, ElMessageBox } from 'element-plus/es'
-import { fetchEmpList } from './useFetchEmpList'
+import { fetchDepList } from './useFetchDepList'
 
-function deleteEmp(emp: any) {
+function deleteDep(dep: any) {
   ElMessageBox.confirm(
-    `你确定要删除 ${emp.name} 吗？`, { type: 'warning' }
+    `你确定要删除 ${dep.name} 吗？`, { type: 'warning' }
   ).then(async () => {
     // await deleteEmpApi(row.id)
     ElMessage.success('删除成功！')
-    fetchEmpList()
+    fetchDepList()
   }).catch(err => err)
 }
 
 export {
-  deleteEmp
+  deleteDep
 }

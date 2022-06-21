@@ -17,6 +17,8 @@
           <el-button @click="resetParams">清空</el-button>
         </div>
       </div>
+
+      <el-button type="success" :icon="Plus">添加</el-button>
     </el-card>
 
     <el-card>
@@ -28,9 +30,9 @@
           <tag-status :title="row['statusText']" :status="Number(row['status'])" />
         </el-table-column>
         <el-table-column prop="createTime" label="创建时间" align="center"/>
-        <el-table-column label="操作" width="140" align="center">
+        <el-table-column label="操作" width="140" align="center" #default="{ row }">
           <el-button link size="small" type="primary">修改</el-button>
-          <el-button link size="small" type="primary">删除</el-button>
+          <el-button @click="deleteDep(row)" link size="small" type="primary">删除</el-button>
         </el-table-column>
       </el-table>
 
@@ -50,6 +52,7 @@
 <script setup lang="ts">
 import Pagination from '@/components/Pagination/index.vue'
 import TagStatus from '@/components/tag-status/'
+import { Plus } from '@element-plus/icons-vue'
 // 获取数据
 import {
   list,
@@ -63,6 +66,9 @@ import {
   handleSizeChange,
   handleCurrentChange
 } from './useFetchDepList'
+
+// 删除想过
+import { deleteDep } from './useDeleteDep'
 
 fetchDepList()
 </script>

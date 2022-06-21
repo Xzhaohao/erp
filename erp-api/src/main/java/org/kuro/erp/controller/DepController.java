@@ -43,7 +43,7 @@ public class DepController {
     @ApiOperation(value = "所有部门", notes = "获取所有状态正常的部门")
     @GetMapping("/all")
     public Result allDepApi() {
-        List<Dep> deps = depService.allDep();
+        List<String> deps = depService.allDep();
         return Result.ok().data(deps);
     }
 }

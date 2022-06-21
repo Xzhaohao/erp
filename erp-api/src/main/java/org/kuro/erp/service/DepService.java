@@ -24,5 +24,5 @@ public interface DepService {
      *
      * @return 部门列表
      */
-    List<Dep> allDep();
+    List<String> allDep();
 }

@@ -19,7 +19,7 @@
 
         <div>
           <el-select v-model="params.depName" placeholder="部门">
-            <el-option :label="item['name']" :value="item['name']" v-for="item in deps" :key="item.id"/>
+            <el-option :label="item" :value="item" v-for="item in deps" :key="item"/>
           </el-select>
         </div>
 

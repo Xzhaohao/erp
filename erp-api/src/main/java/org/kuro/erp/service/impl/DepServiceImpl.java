@@ -27,7 +27,7 @@ public class DepServiceImpl implements DepService {
 
 
     @Override
-    public List<Dep> allDep() {
+    public List<String> allDep() {
         return depMapper.selectAllNormal();
     }
 }

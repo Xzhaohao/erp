@@ -41,11 +41,7 @@ const empForm = ref<empFormData>({
 async function fetchAllDep() {
   let depsCache: any = getCache(DEPS)
   if (!depsCache) {
-    depsCache = []
-    const res: any = await fetchAllDepApi()
-    res.forEach((item: any) => {
-      depsCache.push({ id: item.id, name: item.name })
-    })
+    depsCache = await fetchAllDepApi()
     setCache(DEPS, depsCache)
   }
 

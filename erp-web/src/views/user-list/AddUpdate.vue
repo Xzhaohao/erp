@@ -1,5 +1,5 @@
 <template>
-  <el-dialog v-model="dialogVisible" :title="title" center>
+  <el-dialog v-model="dialogVisible" :title="title" center width="60%">
     <el-form label-width="80px" :model="empForm" ref="empFormRef" :rules="empRules">
       <el-row :gutter="20">
         <el-col :span="12">
@@ -56,7 +56,7 @@
         <el-col :span="12">
           <el-form-item label="部门" prop="depName">
             <el-select v-model="empForm.depName" placeholder="部门">
-              <el-option :label="item['name']" :value="item['name']" v-for="item in deps" :key="item.id"/>
+              <el-option :label="item" :value="item" v-for="item in deps" :key="item"/>
             </el-select>
           </el-form-item>
         </el-col>

@@ -1,6 +1,8 @@
 package org.kuro.erp.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.houkunlin.system.dict.starter.json.DictText;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -17,9 +19,10 @@ public class Emp implements Serializable {
     @ApiModelProperty(value = "主键")
     private String id;
 
-    @ApiModelProperty(value = "用户名")
-    private String username;
+    @ApiModelProperty(value = "民族")
+    private String nation;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @ApiModelProperty(value = "密码")
     private String password;
 
@@ -35,12 +38,16 @@ public class Emp implements Serializable {
     @ApiModelProperty(value = "地址")
     private String address;
 
+    @DictText("gender")
     @ApiModelProperty(value = "1男，2女")
     private Integer gender;
 
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Shanghai")
     @ApiModelProperty(value = "生日")
     private Date birthday;
+
+    @ApiModelProperty(value = "头像")
+    private String avatar;
 
     @ApiModelProperty(value = "部门ID")
     private String depId;
@@ -57,7 +64,8 @@ public class Emp implements Serializable {
     @ApiModelProperty(value = "上次登陆时间")
     private Date lastLoginTime;
 
-    @ApiModelProperty(value = "状态，1正常，2离职")
+    @DictText("emp_state")
+    @ApiModelProperty(value = "状态，1在职，2离职")
     private Integer state;
 
     @ApiModelProperty(value = "创建时间")

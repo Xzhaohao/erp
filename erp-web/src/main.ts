@@ -9,6 +9,9 @@ import 'element-plus/dist/index.css'
 // Element-Plus icon
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
+// 路由鉴权
+import './permission'
+
 // 指令
 import installDirective from './directives'
 

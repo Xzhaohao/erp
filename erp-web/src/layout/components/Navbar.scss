@@ -47,6 +47,12 @@
         margin-top: 5px;
         position: relative;
 
+        > div {
+          display: inline-block;
+          padding-right: 10px;
+          transform: translateY(-14px);
+        }
+
         .el-avatar {
           --el-avatar-background-color: none;
           margin-right: 12px;

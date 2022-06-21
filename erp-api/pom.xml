@@ -37,6 +37,7 @@
         <QR.code>3.5.0</QR.code>
         <commons.io>2.6</commons.io>
         <kaptcha>2.3.2</kaptcha>
+        <dict.version>1.4.9</dict.version>
     </properties>
 
     <dependencies>
@@ -123,6 +124,12 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>${commons.io}</version>
+        </dependency>
+        <!-- 数据字典 -->
+        <dependency>
+            <groupId>com.houkunlin</groupId>
+            <artifactId>system-dict-starter</artifactId>
+            <version>${dict.version}</version>
         </dependency>
     </dependencies>
 

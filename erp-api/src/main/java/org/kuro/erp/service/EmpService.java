@@ -6,6 +6,24 @@ import org.kuro.erp.model.page.PageResult;
 public interface EmpService {
 
     /**
+     * 根据手机号查询员工
+     *
+     * @param mobile 手机号
+     * @return 员工信息
+     */
+    Emp queryEmpByMobile(String mobile);
+
+
+    /**
+     * 根据ID查询员工
+     *
+     * @param id ID
+     * @return 员工信息
+     */
+    Emp queryEmpById(String id);
+
+
+    /**
      * 查询员工列表
      *
      * @param page    当前页

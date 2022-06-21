@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import { fetchEmpListApi } from '@/api/emp'
+import { fetchDepListApi } from '@/api/dep'
 
 const list = ref([])
 const total = ref(0)
@@ -8,21 +8,17 @@ const limit = ref(10)
 const loading = ref(false)
 
 const params = ref({
-  name: '',
-  mobile: '',
-  gender: undefined,
+  tele: '',
   depName: ''
 })
 
-const fetchEmpList = () => {
+function fetchDepList() {
   loading.value = true
-  fetchEmpListApi({
+  fetchDepListApi({
     page: page.value,
     limit: limit.value,
-    name: params.value.name,
-    mobile: params.value.mobile,
-    gender: params.value.gender,
-    depName: params.value.depName
+    depName: params.value.depName,
+    tele: params.value.tele
   })
     .then((res: any) => {
       list.value = res.rows
@@ -38,34 +34,32 @@ const fetchEmpList = () => {
 // 重置查询条件
 const resetParams = () => {
   params.value = {
-    name: '',
-    mobile: '',
-    gender: undefined,
+    tele: '',
     depName: ''
   }
-  fetchEmpList()
+  fetchDepList()
 }
 
 // 显示条数改变
 const handleSizeChange = (val: number) => {
   limit.value = val
-  fetchEmpList()
+  fetchDepList()
 }
 
 // 分页改变
 const handleCurrentChange = (val: number) => {
   page.value = val
-  fetchEmpList()
+  fetchDepList()
 }
 
 export {
   list,
+  total,
   page,
   limit,
-  total,
-  loading,
   params,
-  fetchEmpList,
+  loading,
+  fetchDepList,
   resetParams,
   handleSizeChange,
   handleCurrentChange

@@ -9,13 +9,14 @@
       <!-- 头像 -->
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
-          <el-avatar shape="square" :size="40" src="https://nlgc-api.oss-cn-shenzhen.aliyuncs.com/avatar/2.png"/>
+          <div>{{ $store.getters.userInfo.name }}</div>
+          <el-avatar shape="square" :size="40" :src="$store.getters.userInfo.avatar"/>
           <el-icon><Tools /></el-icon>
         </div>
         <template #dropdown>
           <el-dropdown-menu class="user-dropdown">
             <router-link to="/">
-              <el-dropdown-item>首页</el-dropdown-item>
+              <el-dropdown-item>个人信息</el-dropdown-item>
             </router-link>
             <el-dropdown-item divided @click='logout'>退出登陆</el-dropdown-item>
           </el-dropdown-menu>

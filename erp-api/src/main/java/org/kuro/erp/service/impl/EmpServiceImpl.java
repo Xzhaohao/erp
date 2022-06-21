@@ -18,6 +18,17 @@ public class EmpServiceImpl implements EmpService {
     private EmpMapper empMapper;
 
     @Override
+    public Emp queryEmpByMobile(String mobile) {
+        return empMapper.selectEmpByMobile(mobile);
+    }
+
+
+    @Override
+    public Emp queryEmpById(String id) {
+        return empMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
     public PageResult<Emp> queryEmpList(
             Integer page, Integer limit, String name, String mobile,
             Integer gender, String depName

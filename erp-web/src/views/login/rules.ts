@@ -10,7 +10,7 @@ export const loginForm = ref<LoginFormData>({
   password: 'liella123'
 })
 
-interface LoginFormRules {
+export interface LoginFormRules {
   mobile: ({
     required: boolean;
     message: string;
@@ -41,7 +41,7 @@ export const validateMobile = (rule: LoginFormRules, value: string, callback: Fu
   }
 }
 
-const validatePassword = (rule: LoginFormRules, value: string, callback: Function) => {
+export const validatePassword = (rule: LoginFormRules, value: string, callback: Function) => {
   const regex = /^(?![\d]+$)(?![a-z]+$)(?![A-Z]+$)[\da-zA-z]{6,16}$/
   if (!regex.test(value)) {
     callback(new Error('密码至少包含数字，大、小写字母中的2种，且长度在6-16位之间！'))
@@ -50,7 +50,7 @@ const validatePassword = (rule: LoginFormRules, value: string, callback: Functio
   }
 }
 
-export const loginRules = ref({
+export const loginRules = ref<LoginFormRules>({
   mobile: [
     { required: true, message: '手机号不能为空！', trigger: 'blur' },
     { required: true, trigger: 'blur', validator: validateMobile }

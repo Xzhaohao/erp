@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface EmpMapper extends Mapper<Emp> {
 
+    Emp selectEmpByMobile(String mobile);
+
     List<Emp> selectEmpList(
             @Param("name") String name, @Param("mobile") String mobile,
             @Param("gender") Integer gender, @Param("depName") String depName

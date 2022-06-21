@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.kuro.erp.mapper.EmpMapper">
 
-    <select id="selectEmpList" resultType="org.kuro.erp.model.entity.Emp">
+    <select id="selectEmpByMobile" resultType="org.kuro.erp.model.entity.Emp">
         select id,
-               username,
+               nation,
                password,
                name,
                email,
@@ -12,6 +12,7 @@
                address,
                gender,
                birthday,
+               avatar,
                dep_id,
                dep_name,
                last_login_ip,
@@ -20,6 +21,30 @@
                last_login_time,
                create_time,
                update_time
+        from t_emp
+        where state = 1
+          and mobile = #{mobile};
+    </select>
+
+    <select id="selectEmpList" resultType="org.kuro.erp.model.entity.Emp">
+        select id,
+        nation,
+        password,
+        name,
+        email,
+        mobile,
+        address,
+        gender,
+        birthday,
+        avatar,
+        dep_id,
+        dep_name,
+        last_login_ip,
+        login_times,
+        state,
+        last_login_time,
+        create_time,
+        update_time
         from t_emp
         WHERE 1 = 1
         <if test="mobile != null and mobile != ''">

@@ -1,6 +1,7 @@
 package org.kuro.erp.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.houkunlin.system.dict.starter.json.DictText;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -23,8 +24,9 @@ public class Dep implements Serializable {
     @ApiModelProperty(value = "部门电话")
     private String tele;
 
-    @ApiModelProperty(value = "状态，1正常")
-    private Integer state;
+    @DictText("status")
+    @ApiModelProperty(value = "状态，0启用，1禁用")
+    private Integer status;
 
     @ApiModelProperty(value = "创建时间")
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Shanghai")

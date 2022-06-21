@@ -36,7 +36,7 @@ export const privateRoutes: Array<RouteRecordRaw> = [
     name: 'system',
     redirect: '/sys/role',
     component: () => Layout,
-    meta: { title: '基础管理' },
+    meta: { title: '系统管理' },
     children: [
       {
         path: '/sys/role',
@@ -49,6 +49,12 @@ export const privateRoutes: Array<RouteRecordRaw> = [
         name: 'userList',
         component: () => import('@/views/user-list/index.vue'),
         meta: { title: '员工管理' }
+      },
+      {
+        path: '/sys/dep',
+        name: 'depList',
+        component: () => import('@/views/dep-list/index.vue'),
+        meta: { title: '部门管理' }
       }
     ]
   }

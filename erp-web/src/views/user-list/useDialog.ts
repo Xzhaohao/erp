@@ -1,8 +1,11 @@
 import { ref } from 'vue'
 import { fetchAllDepApi } from '@/api/dep'
 import type { FormInstance } from 'element-plus/es'
+import { setCache, getCache } from '@/utils/storage'
+import { DEPS } from '@/constant'
 
-interface empFormData {
+export interface empFormData {
+  id?: string;
   name: string;
   mobile: string;
   password?: string;
@@ -18,9 +21,10 @@ interface empFormData {
 const title = ref<String>('')
 const ac = ref<Number>()
 const dialogVisible = ref<Boolean>(false)
-const deps = ref<Array<any>>([])
+const deps: any = ref([])
 
 const empForm = ref<empFormData>({
+  id: '',
   name: '',
   mobile: '',
   password: '',
@@ -34,10 +38,18 @@ const empForm = ref<empFormData>({
 })
 
 // 获取所有状态正常的部门
-function fetchAllDep() {
-  fetchAllDepApi().then((res: any) => {
-    deps.value = res
-  })
+async function fetchAllDep() {
+  let depsCache: any = getCache(DEPS)
+  if (!depsCache) {
+    depsCache = []
+    const res: any = await fetchAllDepApi()
+    res.forEach((item: any) => {
+      depsCache.push({ id: item.id, name: item.name })
+    })
+    setCache(DEPS, depsCache)
+  }
+
+  deps.value = depsCache
 }
 
 /**
@@ -54,6 +66,7 @@ function showDialog(type: Number, data?: any) {
     ac.value = 2
 
     empForm.value = {
+      id: data.id,
       address: data.address,
       birthday: data.birthday,
       depName: data.depName,
@@ -65,7 +78,6 @@ function showDialog(type: Number, data?: any) {
     }
   }
   dialogVisible.value = true
-  fetchAllDep()
 }
 
 // 关闭弹窗，并重置表单
@@ -82,5 +94,6 @@ export {
   empForm,
   deps,
   showDialog,
-  closedDialog
+  closedDialog,
+  fetchAllDep
 }

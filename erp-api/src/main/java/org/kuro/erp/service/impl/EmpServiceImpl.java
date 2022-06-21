@@ -1,9 +1,12 @@
 package org.kuro.erp.service.impl;
 
+import cn.hutool.core.util.IdUtil;
+import cn.hutool.crypto.digest.BCrypt;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.kuro.erp.mapper.EmpMapper;
 import org.kuro.erp.mapper.EmpRoleMapper;
+import org.kuro.erp.model.bo.SaveEmpBo;
 import org.kuro.erp.model.entity.Emp;
 import org.kuro.erp.model.entity.EmpRole;
 import org.kuro.erp.model.entity.Role;
@@ -11,11 +14,13 @@ import org.kuro.erp.model.page.PageResult;
 import org.kuro.erp.model.vo.EmpVo;
 import org.kuro.erp.service.EmpService;
 import org.kuro.erp.service.RoleService;
+import org.kuro.erp.utils.GenerateAvatar;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -40,6 +45,7 @@ public class EmpServiceImpl implements EmpService {
     public Emp queryEmpById(String id) {
         return empMapper.selectByPrimaryKey(id);
     }
+
 
     @Override
     public PageResult<EmpVo> queryEmpList(
@@ -66,5 +72,27 @@ public class EmpServiceImpl implements EmpService {
         }
 
         return new PageResult<>(info.getTotal(), vos);
+    }
+
+
+    @Override
+    public void save(SaveEmpBo bo) {
+        Emp emp = new Emp();
+        BeanUtils.copyProperties(bo, emp);
+
+        emp.setId(IdUtil.getSnowflakeNextIdStr());
+        emp.setCreateTime(new Date());
+        emp.setPassword(BCrypt.hashpw(bo.getPassword()));
+        emp.setAvatar(GenerateAvatar.getRandomImg());
+
+        // todo 设置角色
+
+        empMapper.insertSelective(emp);
+    }
+
+
+    @Override
+    public void update(Emp bo) {
+        empMapper.updateByPrimaryKeySelective(bo);
     }
 }

@@ -25,7 +25,7 @@ public class DepController {
 
     @ApiOperation(value = "部门列表", notes = "根据条件查询部门列表")
     @GetMapping("/list")
-    public Result depList(
+    public Result depListApi(
             @ApiParam(name = "page", value = "当前页", defaultValue = "1")
             @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
             @ApiParam(name = "limit", value = "每页显示条数", defaultValue = "10")
@@ -42,7 +42,7 @@ public class DepController {
 
     @ApiOperation(value = "所有部门", notes = "获取所有状态正常的部门")
     @GetMapping("/all")
-    public Result allDep() {
+    public Result allDepApi() {
         List<Dep> deps = depService.allDep();
         return Result.ok().data(deps);
     }

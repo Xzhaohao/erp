@@ -19,10 +19,7 @@
 
         <div>
           <el-select v-model="params.depName" placeholder="部门">
-            <el-option label="销售部" value="销售部"/>
-            <el-option label="财务部" value="财务部"/>
-            <el-option label="技术部" value="技术部"/>
-            <el-option label="采购部" value="采购部"/>
+            <el-option :label="item['name']" :value="item['name']" v-for="item in deps" :key="item.id"/>
           </el-select>
         </div>
 
@@ -55,7 +52,7 @@
         <el-table-column label="操作" width="170" align="center" #default="{ row }">
           <el-button @click="showDialog(2, row)" link size="small" type="warning">修改</el-button>
           <el-button @click="onShowRole(row)" link size="small" type="success">分配角色</el-button>
-          <el-button link size="small" type="danger">删除</el-button>
+          <el-button @click="deleteEmp(row)" link size="small" type="danger">删除</el-button>
         </el-table-column>
       </el-table>
 
@@ -99,9 +96,12 @@ import {
 } from './useFetchEmpList'
 
 // 添加/修改员工
-import { showDialog } from './useDialog'
+import { fetchAllDep, showDialog, deps } from './useDialog'
+// 删除员工
+import { deleteEmp } from './useDeleteEmp'
 
 fetchEmpList()
+fetchAllDep()
 
 // 分配角色
 const selectUserRole = ref([])

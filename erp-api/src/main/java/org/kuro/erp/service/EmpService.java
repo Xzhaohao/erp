@@ -1,5 +1,6 @@
 package org.kuro.erp.service;
 
+import org.kuro.erp.model.bo.SaveEmpBo;
 import org.kuro.erp.model.entity.Emp;
 import org.kuro.erp.model.page.PageResult;
 import org.kuro.erp.model.vo.EmpVo;
@@ -39,4 +40,20 @@ public interface EmpService {
             Integer page, Integer limit, String name, String mobile,
             Integer gender, String depName
     );
+
+
+    /**
+     * 新增员工
+     *
+     * @param bo 员工参数
+     */
+    void save(SaveEmpBo bo);
+
+
+    /**
+     * 修改员工
+     *
+     * @param bo 员工参数
+     */
+    void update(Emp bo);
 }

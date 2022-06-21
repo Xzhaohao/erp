@@ -3,16 +3,17 @@ package org.kuro.erp.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.kuro.erp.model.bo.SaveEmpBo;
 import org.kuro.erp.model.entity.Emp;
 import org.kuro.erp.model.page.PageResult;
 import org.kuro.erp.model.result.Result;
+import org.kuro.erp.model.result.ResultCode;
 import org.kuro.erp.model.vo.EmpVo;
 import org.kuro.erp.service.EmpService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/emp")
@@ -40,5 +41,27 @@ public class EmpController {
     ) {
         PageResult<EmpVo> result = empService.queryEmpList(page, limit, name, mobile, gender, depName);
         return Result.ok().data(result);
+    }
+
+
+    @ApiOperation(value = "添加员工", notes = "添加员工")
+    @PostMapping("/save")
+    public Result saveEmpApi(@RequestBody @Valid SaveEmpBo bo) {
+        // 两次密码不一致
+        if (!bo.getPassword().equals(bo.getPassword2())) {
+            return Result.error(ResultCode.PASSWORD_NOT_ALIKE);
+        }
+
+        empService.save(bo);
+
+        return Result.ok(ResultCode.ADD_SUCCESS);
+    }
+
+
+    @ApiOperation(value = "修改员工", notes = "修改员工信息")
+    @PutMapping("/update")
+    public Result updateEmpApi(@RequestBody @Valid Emp emp) {
+        empService.update(emp);
+        return Result.ok(ResultCode.UPDATE_SUCCESS);
     }
 }

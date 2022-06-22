@@ -27,4 +27,19 @@
         from t_supplier
         WHERE del_flag = 0
     </select>
+
+
+    <select id="selectByName" resultType="org.kuro.erp.model.entity.Supplier">
+        select id,
+               name,
+               address,
+               contact,
+               mobile,
+               needs,
+               del_flag,
+               create_time
+        from t_supplier
+        WHERE del_flag = 0
+          and name = #{name}
+    </select>
 </mapper>

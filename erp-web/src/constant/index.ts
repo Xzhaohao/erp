@@ -10,3 +10,6 @@ export const TAGS_VIEW = 'tagsView'
 
 // 全部部门
 export const DEPS = 'deps'
+
+// 全部供应商
+export const SUPPLIER = 'supplier'

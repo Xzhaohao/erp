@@ -15,4 +15,7 @@ public interface SupplierMapper extends Mapper<Supplier> {
 
 
     List<String> selectSupplierAll();
+
+
+    Supplier selectByName(String name);
 }

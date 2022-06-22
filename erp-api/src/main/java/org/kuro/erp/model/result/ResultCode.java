@@ -49,6 +49,8 @@ public enum ResultCode implements CustomizeResultCode {
     OPEN_ID_FAIL(500, "openid解析失败！"),
     WECHAT_MOBILE_FAIL(500, "微信手机号解析失败！"),
 
+    CAN_NOT_REPEAT_ADD(500, "不能重复添加！"),
+
     WECHAT_PAY_ERROR(500, "微信支付失败！"),
     ALI_PAY_ERROR(500, "支付宝支付失败！"),
     WITHDRAW_CASH_ERROR(500, "提现失败！"),

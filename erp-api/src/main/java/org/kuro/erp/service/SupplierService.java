@@ -40,4 +40,13 @@ public interface SupplierService {
      * @param bo 参数
      */
     void saveSupplier(SaveSupplierBo bo);
+
+
+    /**
+     * 根据供应商名称查询供应商信息
+     *
+     * @param SupplierName 供应商名称
+     * @return 供应商信息
+     */
+    Supplier queryByName(String SupplierName);
 }

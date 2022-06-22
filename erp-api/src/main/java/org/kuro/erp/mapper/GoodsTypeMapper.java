@@ -11,4 +11,8 @@ public interface GoodsTypeMapper extends Mapper<GoodsType> {
     List<GoodsType> selectGoodsTypeList(
             @Param("name") String name, @Param("supplierName") String supplierName
     );
+
+    Integer selectByNameAndSupplier(
+            @Param("name") String name, @Param("supplierName") String supplierName
+    );
 }

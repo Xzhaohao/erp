@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.kuro.erp.mapper.GoodsMapper">
+
+    <resultMap id="GoodsWithType" type="org.kuro.erp.model.vo.GoodsVo">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="origin" property="origin"/>
+        <result column="producer" property="producer"/>
+        <result column="unit" property="unit"/>
+        <result column="in_price" property="inPrice"/>
+        <result column="out_price" property="outPrice"/>
+        <result column="goods_type_id" property="goodsTypeId"/>
+        <result column="del_flag" property="delFlag"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <collection property="goodsType" ofType="org.kuro.erp.model.entity.GoodsType">
+            <id column="goodsTypeId" property="id"/>
+            <result column="goodsTypeName" property="name"/>
+            <result column="supplier_name" property="supplierName"/>
+            <result column="supplier_id" property="supplierId"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectGoodsList" resultMap="GoodsWithType">
+        select g.id,
+        g.name,
+        g.origin,
+        g.producer,
+        g.unit,
+        g.in_price,
+        g.out_price,
+        g.goods_type_id,
+        g.del_flag,
+        g.create_time,
+        g.update_time,
+        gt.id as goodsTypeId,
+        gt.name as goodsTypeName,
+        gt.supplier_id,
+        gt.supplier_name
+        from t_goods g
+        left join t_goods_type gt on g.goods_type_id = gt.id
+        where gt.del_flag = 0
+        <if test="supplierName != null and supplierName != ''">
+            AND gt.supplier_name = #{supplierName}
+        </if>
+        <if test="unit != null and unit != ''">
+            AND g.unit = #{unit}
+        </if>
+        <if test="producer != null and producer != ''">
+            AND g.producer LIKE concat('%',#{producer},'%')
+        </if>
+        <if test="name != null and name != ''">
+            AND g.name LIKE concat('%',#{name},'%')
+        </if>
+        <if test="minInPrice != null and minInPrice != ''">
+            AND g.in_price &gt;= #{minInPrice}
+        </if>
+        <if test="maxInPrice != null and maxInPrice != ''">
+            AND g.in_price &lt;= #{maxInPrice}
+        </if>
+        <if test="minOutPrice != null and minOutPrice != ''">
+            AND g.out_price &gt;= #{minOutPrice}
+        </if>
+        <if test="maxOutPrice != null and maxOutPrice != ''">
+            AND g.out_price &lt;= #{maxOutPrice}
+        </if>
+        ORDER BY g.in_price DESC, g.out_price DESC
+    </select>
+</mapper>

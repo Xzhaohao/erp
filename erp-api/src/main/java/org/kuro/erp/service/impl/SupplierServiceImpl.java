@@ -50,4 +50,10 @@ public class SupplierServiceImpl implements SupplierService {
 
         supplierMapper.insertSelective(supplier);
     }
+
+
+    @Override
+    public Supplier queryByName(String SupplierName) {
+        return supplierMapper.selectByName(SupplierName);
+    }
 }

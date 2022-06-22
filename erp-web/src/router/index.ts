@@ -57,6 +57,33 @@ export const privateRoutes: Array<RouteRecordRaw> = [
         meta: { title: '部门管理' }
       }
     ]
+  },
+  {
+    path: '/goods',
+    name: 'goods',
+    redirect: '/goods/supplier',
+    component: () => Layout,
+    meta: { title: '商品管理' },
+    children: [
+      {
+        path: '/goods/supplier',
+        name: 'Supplier',
+        component: () => import('@/views/supplier/index.vue'),
+        meta: { title: '供应商' }
+      },
+      {
+        path: '/goods/type',
+        name: 'GoodsType',
+        component: () => import('@/views/goods-type/index.vue'),
+        meta: { title: '商品类别' }
+      },
+      {
+        path: '/goods/list',
+        name: 'GoodsList',
+        component: () => import('@/views/goods-list/index.vue'),
+        meta: { title: '商品列表' }
+      }
+    ]
   }
 ]
 

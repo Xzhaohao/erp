@@ -15,4 +15,13 @@
         ORDER BY create_time DESC
     </select>
 
+
+    <select id="selectByNameAndSupplier" resultType="java.lang.Integer">
+        select count(*)
+        from t_goods_type
+        WHERE del_flag = 0
+          AND supplier_name = #{supplierName}
+          AND name = #{name}
+    </select>
+
 </mapper>

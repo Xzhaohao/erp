@@ -38,6 +38,7 @@
 
       <!-- 分页 -->
       <Pagination
+        v-if="total > 0"
         layout="total, sizes, prev, pager, next, jumper"
         :total="total"
         :page="page"

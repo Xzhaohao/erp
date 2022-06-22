@@ -17,7 +17,7 @@ const params = ref({
 })
 
 // 获取所有状态正常的供应商
-async function fetchAllSupplier() {
+export async function fetchAllSupplier() {
   let supplierCache: any = getCache(SUPPLIER)
   if (!supplierCache) {
     supplierCache = await fetchAllSupplierApi()
@@ -40,7 +40,7 @@ function fetchGoodsTypeList() {
       total.value = res.total
 
       // 获取全部供应商
-      fetchAllSupplier()
+      fetchAllSupplier().then()
     })
     .finally(() => {
       setTimeout(() => {

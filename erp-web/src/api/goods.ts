@@ -30,6 +30,19 @@ export interface GoodsTypeForm {
   supplierName: String;
 }
 
+interface GoodsParams {
+  page: Number;
+  limit: Number;
+  name?: String;
+  supplierName?: String;
+  producer?: String;
+  unit?: String;
+  minInPrice?: Number;
+  maxInPrice?: Number;
+  minOutPrice?: Number;
+  maxOutPrice?: Number;
+}
+
 // 获取供应商列表
 export const fetchSupplierApi = (params: SupplierListParams) => request({
   url: '/supplier/list',
@@ -72,4 +85,10 @@ export const updateGoodsTypeApi = (data: GoodsTypeForm) => request({
 export const deleteGoodsTypeApi = (id: string) => request({
   url: `/goodsType/delete/${id}`,
   method: 'DELETE'
+})
+
+// 商品列表
+export const fetchGoodsApi = (params: GoodsParams) => request({
+  url: '/goods/list',
+  params
 })

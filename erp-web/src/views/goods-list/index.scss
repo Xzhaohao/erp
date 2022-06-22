@@ -1,0 +1,59 @@
+.head-action {
+  margin-bottom: 15px;
+
+  :deep(.el-card__body) {
+    display: flex;
+    justify-content: space-between;
+    padding: 13px 20px;
+  }
+
+  .el-select {
+    width: 100%;
+    max-width: 240px;
+  }
+
+  .head-action-left {
+    flex: 1;
+    padding-right: 20px;
+    display: flex;
+
+    .form-warp {
+      .el-input {
+        max-width: 280px;
+      }
+
+      .price-row {
+        display: flex;
+        margin-top: 12px;
+
+        .price-label {
+          font-size: 14px;
+          color: #4C5765;
+        }
+
+        .price-divider {
+          padding: 0 8px;
+          color: #4C5765;
+        }
+
+        .el-input {
+          max-width: 165px;
+        }
+      }
+    }
+
+    .query-btn {
+      display: flex;
+      flex-direction: column;
+      padding-left: 20px;
+
+      .el-button {
+        margin-left: 0;
+
+        &:last-child {
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+}

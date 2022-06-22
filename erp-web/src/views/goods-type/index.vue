@@ -28,8 +28,7 @@
         <el-table-column type="index" width="60" label="#" align="center"/>
         <el-table-column prop="supplierName" label="供应商" align="center"/>
         <el-table-column prop="name" label="类别名称" align="center"/>
-        <el-table-column prop="delFlagText" label="状态" align="center" width="100">
-        </el-table-column>
+        <el-table-column prop="delFlagText" label="状态" align="center" width="100"/>
         <el-table-column prop="createTime" label="创建时间" align="center"/>
         <el-table-column label="操作" width="140" align="center" #default="{ row }">
           <el-button @click="showDialog(2, row)" link size="small" type="warning">修改</el-button>

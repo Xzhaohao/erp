@@ -4,7 +4,7 @@ import cn.hutool.core.util.IdUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.kuro.erp.mapper.SupplierMapper;
-import org.kuro.erp.model.bo.SaveSupplierBo;
+import org.kuro.erp.model.bo.SupplierBo;
 import org.kuro.erp.model.entity.Supplier;
 import org.kuro.erp.model.page.PageResult;
 import org.kuro.erp.service.SupplierService;
@@ -41,7 +41,7 @@ public class SupplierServiceImpl implements SupplierService {
 
 
     @Override
-    public void saveSupplier(SaveSupplierBo bo) {
+    public void saveSupplier(SupplierBo bo) {
         Supplier supplier = new Supplier();
         BeanUtils.copyProperties(bo, supplier);
 
@@ -55,5 +55,14 @@ public class SupplierServiceImpl implements SupplierService {
     @Override
     public Supplier queryByName(String SupplierName) {
         return supplierMapper.selectByName(SupplierName);
+    }
+
+
+    @Override
+    public void updateSupplier(SupplierBo bo) {
+        Supplier supplier = new Supplier();
+        BeanUtils.copyProperties(bo, supplier);
+        supplier.setUpdateTime(new Date());
+        supplierMapper.updateByPrimaryKeySelective(supplier);
     }
 }

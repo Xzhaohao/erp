@@ -1,6 +1,6 @@
 package org.kuro.erp.service;
 
-import org.kuro.erp.model.bo.SaveSupplierBo;
+import org.kuro.erp.model.bo.SupplierBo;
 import org.kuro.erp.model.entity.Supplier;
 import org.kuro.erp.model.page.PageResult;
 
@@ -39,7 +39,7 @@ public interface SupplierService {
      *
      * @param bo 参数
      */
-    void saveSupplier(SaveSupplierBo bo);
+    void saveSupplier(SupplierBo bo);
 
 
     /**
@@ -49,4 +49,12 @@ public interface SupplierService {
      * @return 供应商信息
      */
     Supplier queryByName(String SupplierName);
+
+
+    /**
+     * 修改供应商
+     *
+     * @param bo 参数
+     */
+    void updateSupplier(SupplierBo bo);
 }

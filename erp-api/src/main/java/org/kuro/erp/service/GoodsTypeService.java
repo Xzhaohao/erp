@@ -4,6 +4,8 @@ import org.kuro.erp.model.bo.GoodsTypeBo;
 import org.kuro.erp.model.entity.GoodsType;
 import org.kuro.erp.model.page.PageResult;
 
+import java.util.List;
+
 public interface GoodsTypeService {
 
     /**
@@ -40,4 +42,13 @@ public interface GoodsTypeService {
      * @param id 主键
      */
     void deleteById(String id);
+
+
+    /**
+     * 根据供应商名称查询所有商品类别
+     *
+     * @param supplierName 供应商
+     * @return 商品类别
+     */
+    List<String> queryAllBySupplier(String supplierName);
 }

@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import { GoodsTypeForm } from '@/api/goods'
+import { SaveSupplierForm } from '@/api/goods'
 import type { FormInstance } from 'element-plus/es'
 
 const title = ref<String>('')
@@ -7,9 +7,12 @@ const dialogVisible = ref<Boolean>(false)
 
 const initial = {
   name: '',
-  supplierName: ''
+  address: '',
+  contact: '',
+  mobile: '',
+  needs: undefined
 }
-const goodsTypeForm = ref<GoodsTypeForm>({ ...initial })
+const supplierForm = ref<SaveSupplierForm>({ ...initial })
 
 /**
  * 点击添加/修改员工按钮
@@ -18,14 +21,17 @@ const goodsTypeForm = ref<GoodsTypeForm>({ ...initial })
  */
 function showDialog(type: Number, data?: any) {
   if (type === 1) {
-    title.value = '添加商品类别'
+    title.value = '添加供应商'
   } else {
-    title.value = '修改商品类别'
+    title.value = '修改供应商'
 
-    goodsTypeForm.value = {
+    supplierForm.value = {
       id: data.id,
       name: data.name,
-      supplierName: data.supplierName
+      address: data.address,
+      contact: data.contact,
+      mobile: data.mobile,
+      needs: data.needs
     }
   }
 
@@ -33,18 +39,17 @@ function showDialog(type: Number, data?: any) {
 }
 
 // 关闭弹窗，并重置表单
-function closedDialog(goodsTypeFormEl: FormInstance | undefined) {
+function closedDialog(formEl: FormInstance | undefined) {
   dialogVisible.value = false
-  if (!goodsTypeFormEl) return
-
-  goodsTypeForm.value = { ...initial }
-  goodsTypeFormEl.resetFields()
+  if (!formEl) return
+  supplierForm.value = { ...initial }
+  formEl.resetFields()
 }
 
 export {
   title,
   dialogVisible,
-  goodsTypeForm,
+  supplierForm,
   showDialog,
   closedDialog
 }

@@ -1,5 +1,18 @@
 import request from '@/utils/request'
-import { empFormData } from '@/views/user-list/useDialog'
+
+export interface empFormData {
+  id?: string;
+  name: string;
+  mobile: string;
+  password?: string;
+  password2?: string;
+  email: string;
+  address: string;
+  gender: number | unknown;
+  depName: string;
+  birthday: string;
+  nation: string;
+}
 
 interface EmpListParams {
   page: Number;

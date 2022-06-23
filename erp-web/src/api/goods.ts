@@ -9,12 +9,13 @@ interface SupplierListParams {
   contact?: String;
 }
 
-interface SaveSupplierForm {
+export interface SaveSupplierForm {
+  id?: string;
   name: string;
   address: string;
   contact: string;
   mobile: string;
-  needs: number;
+  needs: number | unknown;
 }
 
 interface GoodsTypeParams {
@@ -56,9 +57,22 @@ export const fetchAllSupplierApi = () => request({
 
 // 添加供应商
 export const saveSupplierApi = (data: SaveSupplierForm) => request({
-  url: '/supplier/update',
+  url: '/supplier/save',
   method: 'POST',
   data
+})
+
+// 修改供应商
+export const updateSupplierApi = (data: SaveSupplierForm) => request({
+  url: '/supplier/update',
+  method: 'PUT',
+  data
+})
+
+// 删除
+export const deleteSupplierApi = (id: string) => request({
+  url: `/supplier/delete/${id}`,
+  method: 'DELETE'
 })
 
 // 商品类别列表

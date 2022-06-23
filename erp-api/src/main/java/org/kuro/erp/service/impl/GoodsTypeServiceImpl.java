@@ -71,4 +71,10 @@ public class GoodsTypeServiceImpl implements GoodsTypeService {
     public void deleteById(String id) {
         goodsTypeMapper.deleteByPrimaryKey(id);
     }
+
+
+    @Override
+    public List<String> queryAllBySupplier(String supplierName) {
+        return goodsTypeMapper.selectAllBySupplier(supplierName);
+    }
 }

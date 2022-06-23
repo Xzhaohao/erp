@@ -3,27 +3,14 @@ import { fetchAllDepApi } from '@/api/dep'
 import type { FormInstance } from 'element-plus/es'
 import { setCache, getCache } from '@/utils/storage'
 import { DEPS } from '@/constant'
-
-export interface empFormData {
-  id?: string;
-  name: string;
-  mobile: string;
-  password?: string;
-  password2?: string;
-  email: string;
-  address: string;
-  gender: number | unknown;
-  depName: string;
-  birthday: string;
-  nation: string;
-}
+import { empFormData } from '@/api/emp'
 
 const title = ref<String>('')
 const ac = ref<Number>()
 const dialogVisible = ref<Boolean>(false)
 const deps: any = ref([])
 
-const empForm = ref<empFormData>({
+const initial = {
   id: '',
   name: '',
   mobile: '',
@@ -35,7 +22,8 @@ const empForm = ref<empFormData>({
   depName: '',
   birthday: '',
   nation: ''
-})
+}
+const empForm = ref<empFormData>({ ...initial })
 
 // 获取所有状态正常的部门
 async function fetchAllDep() {
@@ -80,6 +68,7 @@ function showDialog(type: Number, data?: any) {
 function closedDialog(empFormEl: FormInstance | undefined) {
   dialogVisible.value = false
   if (!empFormEl) return
+  empForm.value = { ...initial }
   empFormEl.resetFields()
 }
 

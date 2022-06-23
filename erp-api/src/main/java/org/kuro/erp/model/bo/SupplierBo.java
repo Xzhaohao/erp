@@ -9,7 +9,10 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @ApiModel(value = "SavaSupplierBo对象", description = "供应商参数")
-public class SaveSupplierBo {
+public class SupplierBo {
+
+    @ApiModelProperty(value = "ID")
+    private String id;
 
     @NotBlank(message = "请填写供应商公司名称！")
     @ApiModelProperty(value = "供应商公司名称")

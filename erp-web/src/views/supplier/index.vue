@@ -27,7 +27,7 @@
         </div>
       </div>
 
-      <el-button type="success" :icon="Plus">添加</el-button>
+      <el-button @click="showDialog(1)" type="success" :icon="Plus">添加</el-button>
     </el-card>
 
     <el-card>
@@ -38,9 +38,9 @@
         <el-table-column prop="contact" label="联系人" align="center" width="140"/>
         <el-table-column prop="mobile" label="联系电话" align="center" width="160"/>
         <el-table-column prop="needsText" label="送货方式" align="center" width="100"/>
-        <el-table-column label="操作" width="150" align="center">
-          <el-button link size="small" type="warning">修改</el-button>
-          <el-button link size="small" type="danger">删除</el-button>
+        <el-table-column label="操作" width="150" align="center" #default="{ row }">
+          <el-button @click="showDialog(2, row)" link size="small" type="warning">修改</el-button>
+          <el-button @click="deleteSupplier(row)" link size="small" type="danger">删除</el-button>
         </el-table-column>
       </el-table>
 
@@ -55,12 +55,15 @@
         @current-change="handleCurrentChange"
       />
     </el-card>
+
+    <supplier-dialog/>
   </div>
 </template>
 
 <script setup lang="ts">
 import { Plus } from '@element-plus/icons-vue'
 import Pagination from '@/components/Pagination/index.vue'
+import SupplierDialog from './components/SupplierDialog.vue'
 
 import {
   list,
@@ -74,6 +77,11 @@ import {
   handleSizeChange,
   handleCurrentChange
 } from './useFetchSupplier'
+
+// 添加/修改供应商
+import { showDialog } from './components/useAUSupplier'
+// 删除供应商
+import { deleteSupplier } from './components/useDeleteSupplier'
 
 fetchSupplier()
 </script>

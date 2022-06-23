@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/goodsType")
@@ -61,5 +62,16 @@ public class GoodsTypeController {
     public Result deleteGoodsTypeApi(@PathVariable(name = "id") String id) {
         goodsTypeService.deleteById(id);
         return Result.ok(ResultCode.DELETE_SUCCESS);
+    }
+
+
+    @ApiOperation(value = "全部类别", notes = "根据供应商名称查询全部商品类别")
+    @GetMapping("/all")
+    public Result allGoodsTypeBySupplierApi(
+            @ApiParam(name = "supplierName", value = "供应商")
+            @RequestParam(value = "supplierName") String supplierName
+    ) {
+        List<String> list = goodsTypeService.queryAllBySupplier(supplierName);
+        return Result.ok().data(list);
     }
 }

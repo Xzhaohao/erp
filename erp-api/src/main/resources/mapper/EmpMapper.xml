@@ -19,11 +19,11 @@
                login_times,
                state,
                last_login_time,
-               create_time,
-               update_time
+               create_time
         from t_emp
         where state = 1
-          and mobile = #{mobile};
+          and mobile = #{mobile}
+        limit 1;
     </select>
 
     <select id="selectEmpList" resultType="org.kuro.erp.model.entity.Emp">

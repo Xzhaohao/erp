@@ -3,7 +3,7 @@
 <mapper namespace="org.kuro.erp.mapper.DepMapper">
 
     <select id="selectDepList" resultType="org.kuro.erp.model.entity.Dep">
-        select id, name, tele, status, create_time, update_time
+        select id, name, tele, email, description, status, create_time, update_time
         from t_dep
         WHERE 1 = 1
         <if test="tele != null and tele != ''">

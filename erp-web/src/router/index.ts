@@ -33,7 +33,7 @@ export const publicRoutes: Array<RouteRecordRaw> = [
 export const privateRoutes: Array<RouteRecordRaw> = [
   {
     path: '/system',
-    name: 'system',
+    name: 'systemManage',
     redirect: '/sys/role',
     component: () => Layout,
     meta: { title: '系统管理' },
@@ -60,7 +60,7 @@ export const privateRoutes: Array<RouteRecordRaw> = [
   },
   {
     path: '/goods',
-    name: 'goods',
+    name: 'goodsManage',
     redirect: '/goods/supplier',
     component: () => Layout,
     meta: { title: '商品管理' },
@@ -82,6 +82,141 @@ export const privateRoutes: Array<RouteRecordRaw> = [
         name: 'GoodsList',
         component: () => import('@/views/goods-list/index.vue'),
         meta: { title: '商品列表' }
+      }
+    ]
+  },
+  {
+    path: '/purchase',
+    name: 'purchaseManage',
+    redirect: '/purchase/order',
+    component: () => Layout,
+    meta: { title: '采购管理' },
+    children: [
+      {
+        path: '/purchase/order',
+        name: 'purchaseOrder',
+        component: () => import('@/views/purchase-order/index.vue'),
+        meta: { title: '采购订单' }
+      },
+      {
+        path: '/purchase/reject',
+        name: 'purchaseReject',
+        component: () => import('@/views/purchase-reject/index.vue'),
+        meta: { title: '采购退货' }
+      },
+      {
+        path: '/purchase/approve',
+        name: 'purchaseApprove',
+        component: () => import('@/views/purchase-approve/index.vue'),
+        meta: { title: '采购审批' }
+      }
+    ]
+  },
+  {
+    path: '/sale',
+    name: 'saleManage',
+    redirect: '/sale/order',
+    component: () => Layout,
+    meta: { title: '销售管理' },
+    children: [
+      {
+        path: '/sale/order',
+        name: 'saleOrder',
+        component: () => import('@/views/sale-order/index.vue'),
+        meta: { title: '销售订单' }
+      },
+      {
+        path: '/sale/reject',
+        name: 'saleReject',
+        component: () => import('@/views/sale-reject/index.vue'),
+        meta: { title: '销售退货' }
+      },
+      {
+        path: '/sale/approve',
+        name: 'saleApprove',
+        component: () => import('@/views/sale-approve/index.vue'),
+        meta: { title: '销售审批' }
+      }
+    ]
+  },
+  {
+    path: '/transport',
+    name: 'goodsTransport',
+    redirect: '/transport/appoint',
+    component: () => Layout,
+    meta: { title: '商品运输' },
+    children: [
+      {
+        path: '/transport/list',
+        name: 'transportList',
+        component: () => import('@/views/transport-list/index.vue'),
+        meta: { title: '运输任务列表' }
+      },
+      {
+        path: '/transport/appoint',
+        name: 'transportAppoint',
+        component: () => import('@/views/transport-appoint/index.vue'),
+        meta: { title: '运输任务指派' }
+      }
+    ]
+  },
+  {
+    path: '/depot',
+    name: 'depotManage',
+    redirect: '/depot/list',
+    component: () => Layout,
+    meta: { title: '仓库管理' },
+    children: [
+      {
+        path: '/depot/stocks',
+        name: 'depotStocks',
+        component: () => import('@/views/depot-stocks/index.vue'),
+        meta: { title: '库存查询' }
+      },
+      {
+        path: '/depot/in',
+        name: 'depotIn',
+        component: () => import('@/views/depot-in/index.vue'),
+        meta: { title: '入库' }
+      },
+      {
+        path: '/depot/out',
+        name: 'depotOut',
+        component: () => import('@/views/depot-out/index.vue'),
+        meta: { title: '出库' }
+      },
+      {
+        path: '/depot/operate',
+        name: 'depotOperate',
+        component: () => import('@/views/depot-operate/index.vue'),
+        meta: { title: '仓库操作明细' }
+      }
+    ]
+  },
+  {
+    path: '/report',
+    name: 'reportManage',
+    redirect: '/report/in',
+    component: () => Layout,
+    meta: { title: '报表中心' },
+    children: [
+      {
+        path: '/report/in',
+        name: 'reportIn',
+        component: () => import('@/views/report-in/index.vue'),
+        meta: { title: '进货报表' }
+      },
+      {
+        path: '/report/sale',
+        name: 'reportSale',
+        component: () => import('@/views/report-sale/index.vue'),
+        meta: { title: '销售报表' }
+      },
+      {
+        path: '/report/depot',
+        name: 'reportDepot',
+        component: () => import('@/views/report-depot/index.vue'),
+        meta: { title: '仓库报表' }
       }
     ]
   }

@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref, nextTick } from 'vue'
 import { GoodsTypeForm } from '@/api/goods'
 import type { FormInstance } from 'element-plus/es'
 
@@ -33,12 +33,14 @@ function showDialog(type: Number, data?: any) {
 }
 
 // 关闭弹窗，并重置表单
-function closedDialog(goodsTypeFormEl: FormInstance | undefined) {
+async function closedDialog(goodsTypeFormEl: FormInstance | undefined) {
   dialogVisible.value = false
   if (!goodsTypeFormEl) return
 
-  goodsTypeForm.value = { ...initial }
-  goodsTypeFormEl.resetFields()
+  await nextTick(() => {
+    goodsTypeForm.value = { ...initial }
+    goodsTypeFormEl.resetFields()
+  })
 }
 
 export {

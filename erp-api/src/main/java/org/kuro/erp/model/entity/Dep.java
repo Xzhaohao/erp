@@ -24,6 +24,12 @@ public class Dep implements Serializable {
     @ApiModelProperty(value = "部门电话")
     private String tele;
 
+    @ApiModelProperty(value = "邮件")
+    private String email;
+
+    @ApiModelProperty(value = "描述")
+    private String description;
+
     @DictText("status")
     @ApiModelProperty(value = "状态，0启用，1禁用")
     private Integer status;

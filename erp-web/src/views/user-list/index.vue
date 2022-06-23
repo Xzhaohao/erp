@@ -40,7 +40,7 @@
     <el-card>
       <el-table :data="list" border stripe style="width: 100%" v-loading="loading">
         <el-table-column type="selection" width="55" align="center"/>
-        <el-table-column prop="name" label="姓名" align="center"/>
+        <el-table-column prop="name" label="姓名" align="center" width="90"/>
         <el-table-column prop="genderText" label="性别" align="center" width="70"/>
         <el-table-column prop="nation" label="民族" align="center" width="70"/>
         <el-table-column prop="mobile" label="手机号" align="center"/>
@@ -49,6 +49,7 @@
         <el-table-column prop="birthday" label="生日" align="center" width="120"/>
         <el-table-column prop="stateText" label="状态" align="center" width="80"/>
         <el-table-column prop="depName" label="部门" align="center" width="100"/>
+        <el-table-column prop="depName" label="角色" align="center" width="100"/>
         <el-table-column label="操作" width="170" align="center" #default="{ row }">
           <el-button @click="showDialog(2, row)" link size="small" type="warning">修改</el-button>
           <el-button @click="onShowRole(row)" link size="small" type="success">分配角色</el-button>

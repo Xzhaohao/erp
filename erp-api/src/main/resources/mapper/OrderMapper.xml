@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.kuro.erp.mapper.OrderMapper">
+
+    <select id="selectListByParams" resultType="org.kuro.erp.model.entity.Order">
+        select id, order_num, creater_id, creater, order_type, order_state, total, order_price, checker_id, checker,
+        checker_time, completer_id, completer, supplier_id, supplier_name, create_time, end_time, update_time
+        from t_order
+        where order_type = #{orderType}
+        <if test="orderState != null and orderState != ''">
+            AND order_state = #{orderState}
+        </if>
+        <if test="creater != null and creater != ''">
+            AND creater LIKE concat('%',#{creater},'%')
+        </if>
+        <if test="minTotal != null and minTotal != ''">
+            AND total &gt;= #{minTotal}
+        </if>
+        <if test="maxTotal != null and maxTotal != ''">
+            AND total &lt;= #{maxTotal}
+        </if>
+        <if test="minCreateTime != null">
+            AND create_time &gt;= #{minCreateTime}
+        </if>
+        <if test="maxCreateTime != null">
+            AND create_time &lt;= #{maxCreateTime}
+        </if>
+        <if test="minOrderPrice != null and minOrderPrice != ''">
+            AND order_price &gt;= #{minOrderPrice}
+        </if>
+        <if test="maxOrderPrice != null and maxOrderPrice != ''">
+            AND order_price &lt;= #{maxOrderPrice}
+        </if>
+        ORDER BY order_price DESC, create_time DESC, total DESC
+    </select>
+</mapper>

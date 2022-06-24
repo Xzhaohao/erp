@@ -42,8 +42,9 @@ public class EmpServiceImpl implements EmpService {
 
 
     @Override
-    public Emp queryEmpById(String id) {
-        return empMapper.selectByPrimaryKey(id);
+    public EmpVo queryEmpById(String id) {
+        Emp emp = empMapper.selectByPrimaryKey(id);
+        return empSetRoles(emp);
     }
 
 
@@ -58,17 +59,7 @@ public class EmpServiceImpl implements EmpService {
 
         List<EmpVo> vos = new ArrayList<>();
         for (Emp emp : empList) {
-            EmpVo vo = new EmpVo();
-            BeanUtils.copyProperties(emp, vo);
-
-            List<EmpRole> empRoles = empRoleMapper.selectEmpRoleByEmpId(emp.getId());
-            List<Role> roles = new ArrayList<>();
-            for (EmpRole empRole : empRoles) {
-                Role role = roleService.queryById(empRole.getRoleId());
-                roles.add(role);
-            }
-            vo.setRoles(roles);
-            vos.add(vo);
+            vos.add(empSetRoles(emp));
         }
 
         return new PageResult<>(info.getTotal(), vos);
@@ -94,5 +85,21 @@ public class EmpServiceImpl implements EmpService {
     @Override
     public void update(Emp bo) {
         empMapper.updateByPrimaryKeySelective(bo);
+    }
+
+
+    private EmpVo empSetRoles(Emp emp) {
+        EmpVo vo = new EmpVo();
+        BeanUtils.copyProperties(emp, vo);
+
+        List<EmpRole> empRoles = empRoleMapper.selectEmpRoleByEmpId(emp.getId());
+        List<Role> roles = new ArrayList<>();
+        for (EmpRole empRole : empRoles) {
+            Role role = roleService.queryById(empRole.getRoleId());
+            roles.add(role);
+        }
+        vo.setRoles(roles);
+
+        return vo;
     }
 }

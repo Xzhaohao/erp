@@ -20,9 +20,9 @@ public interface EmpService {
      * 根据ID查询员工
      *
      * @param id ID
-     * @return 员工信息
+     * @return 员工VO信息
      */
-    Emp queryEmpById(String id);
+    EmpVo queryEmpById(String id);
 
 
     /**

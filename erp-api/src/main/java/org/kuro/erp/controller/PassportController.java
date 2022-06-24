@@ -10,6 +10,7 @@ import org.kuro.erp.model.bo.LoginFromBo;
 import org.kuro.erp.model.entity.Emp;
 import org.kuro.erp.model.result.Result;
 import org.kuro.erp.model.result.ResultCode;
+import org.kuro.erp.model.vo.EmpVo;
 import org.kuro.erp.service.EmpService;
 import org.kuro.erp.utils.RedisKeyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,9 +60,9 @@ public class PassportController {
     @GetMapping("/profile")
     public Result profileApi() {
         String loginUserID = StpUtil.getLoginIdAsString();
-        // Emp user = empService.queryEmpById(loginUserID);
-        SaSession session = StpUtil.getSession();
-        Emp user = (Emp) session.get(RedisKeyUtil.getSessionUserKey());
+        EmpVo user = empService.queryEmpById(loginUserID);
+        // SaSession session = StpUtil.getSession();
+        // Emp user = (Emp) session.get(RedisKeyUtil.getSessionUserKey());
         return Result.ok().data(user);
     }
 

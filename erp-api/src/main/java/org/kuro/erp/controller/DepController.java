@@ -4,10 +4,10 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.kuro.erp.model.bo.DepBo;
-import org.kuro.erp.model.entity.Dep;
 import org.kuro.erp.model.page.PageResult;
 import org.kuro.erp.model.result.Result;
 import org.kuro.erp.model.result.ResultCode;
+import org.kuro.erp.model.vo.DepVo;
 import org.kuro.erp.service.DepService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +35,7 @@ public class DepController {
             @ApiParam(name = "tele", value = "部门座机")
             @RequestParam(value = "tele", required = false) String tele
     ) {
-        PageResult<Dep> result = depService.depList(page, limit, depName, tele);
+        PageResult<DepVo> result = depService.depList(page, limit, depName, tele);
         return Result.ok().data(result);
     }
 

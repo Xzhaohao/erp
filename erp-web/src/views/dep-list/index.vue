@@ -27,6 +27,9 @@
         <el-table-column prop="name" label="部门名称" align="center" width="140"/>
         <el-table-column prop="tele" label="电话" align="center" width="150"/>
         <el-table-column prop="email" label="邮箱" align="center" width="170"/>
+        <el-table-column label="部门人数" align="center" width="100" #default="{ row }">
+          {{ row['empCount'] }} 人
+        </el-table-column>
         <el-table-column label="状态" align="center" #default="{ row }" width="100">
           <tag-status :title="row['statusText']" :status="Number(row['status'])"/>
         </el-table-column>

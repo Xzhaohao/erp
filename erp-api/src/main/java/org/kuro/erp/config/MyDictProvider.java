@@ -39,7 +39,7 @@ public class MyDictProvider implements DictProvider {
                 .add("1", "采购单").add("2", "运输单")
                 .add("3", "入库单").add("4", "销售单").build();
 
-        DictTypeVo t8 = DictTypeVo.newBuilder("order_type", "订单状态")
+        DictTypeVo t8 = DictTypeVo.newBuilder("order_state", "订单状态")
                 .add("1", "未审核").add("2", "审核未通过")
                 .add("3", "审核通过").add("4", "待采购")
                 .add("5", "待指派").add("6", "采购中")

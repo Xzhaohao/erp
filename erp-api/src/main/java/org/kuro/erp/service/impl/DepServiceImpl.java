@@ -9,12 +9,14 @@ import org.kuro.erp.model.bo.DepBo;
 import org.kuro.erp.model.entity.Dep;
 import org.kuro.erp.model.page.PageResult;
 import org.kuro.erp.model.result.ResultCode;
+import org.kuro.erp.model.vo.DepVo;
 import org.kuro.erp.service.DepService;
 import org.kuro.erp.service.EmpService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -28,11 +30,21 @@ public class DepServiceImpl implements DepService {
     private EmpService empService;
 
     @Override
-    public PageResult<Dep> depList(Integer page, Integer limit, String depName, String tele) {
+    public PageResult<DepVo> depList(Integer page, Integer limit, String depName, String tele) {
         PageHelper.startPage(page, limit);
         List<Dep> deps = depMapper.selectDepList(tele, depName);
         PageInfo<Dep> info = new PageInfo<>(deps);
-        return new PageResult<>(info.getTotal(), deps);
+
+        List<DepVo> list = new ArrayList<>();
+        deps.forEach(item -> {
+            DepVo vo = new DepVo();
+            BeanUtils.copyProperties(item, vo);
+            Integer count = empService.empDepNum(item.getId());
+            vo.setEmpCount(count);
+            list.add(vo);
+        });
+
+        return new PageResult<>(info.getTotal(), list);
     }
 
 

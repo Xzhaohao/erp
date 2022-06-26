@@ -1,5 +1,5 @@
 <template>
-  <el-dialog v-model="dialogVisible" :title="title" center width="40%">
+  <el-dialog v-model="dialogVisible" :title="title" center width="40%" :show-close="false">
     <el-form label-width="100px" :model="supplierForm" ref="supplierFormRef" :rules="supplierRules">
       <el-form-item label="供应商" prop="name">
         <el-input v-model="supplierForm.name" placeholder="供应商公司名称"/>

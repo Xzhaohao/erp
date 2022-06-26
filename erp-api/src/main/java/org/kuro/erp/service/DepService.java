@@ -3,6 +3,7 @@ package org.kuro.erp.service;
 import org.kuro.erp.model.bo.DepBo;
 import org.kuro.erp.model.entity.Dep;
 import org.kuro.erp.model.page.PageResult;
+import org.kuro.erp.model.vo.DepVo;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public interface DepService {
      * @param tele    部门电话
      * @return 部门分页信息列表
      */
-    PageResult<Dep> depList(Integer page, Integer limit, String depName, String tele);
+    PageResult<DepVo> depList(Integer page, Integer limit, String depName, String tele);
 
 
     /**

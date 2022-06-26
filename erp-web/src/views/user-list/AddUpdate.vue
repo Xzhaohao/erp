@@ -1,5 +1,5 @@
 <template>
-  <el-dialog v-model="dialogVisible" :title="title" center width="60%">
+  <el-dialog v-model="dialogVisible" :title="title" center width="60%" :show-close="false">
     <el-form label-width="80px" :model="empForm" ref="empFormRef" :rules="empRules">
       <el-row :gutter="20">
         <el-col :span="12">

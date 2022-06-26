@@ -28,7 +28,7 @@
 
           <div class="row">
             <div class="col" style="padding-right: 52px;">
-              <span class="input-label" style="width: 175px;">下单时间：</span>
+              <span class="input-label" style="width: 73px;">下单时间：</span>
               <el-date-picker
                 v-model="params.createTime"
                 type="daterange"
@@ -54,7 +54,7 @@
         </div>
       </div>
 
-      <el-button type="success" :icon="Plus">添加</el-button>
+      <el-button @click="visible = true" type="success" :icon="Plus">添加</el-button>
     </el-card>
 
     <el-card>
@@ -65,7 +65,7 @@
         <el-table-column prop="createTime" label="制单时间" align="center"/>
         <el-table-column prop="total" label="商品总数" align="center"/>
         <el-table-column prop="orderPrice" label="订单总价" align="center"/>
-        <el-table-column prop="orderState" label="订单状态" align="center"/>
+        <el-table-column prop="orderStateText" label="订单状态" align="center"/>
         <el-table-column label="操作" width="140" align="center">
           <el-button link size="small" type="warning">详情</el-button>
           <el-button link size="small" type="danger">删除</el-button>
@@ -83,12 +83,15 @@
         @current-change="handleCurrentChange"
       />
     </el-card>
+
+    <add-purchase-order/>
   </div>
 </template>
 
 <script setup lang="ts">
 import { Plus } from '@element-plus/icons-vue'
 import Pagination from '@/components/Pagination/index.vue'
+import AddPurchaseOrder from './components/AddPurchaseOrder.vue'
 
 import {
   page,
@@ -102,6 +105,9 @@ import {
   handleCurrentChange,
   handleSizeChange
 } from './useFetchOrder'
+
+// 添加订单
+import { visible } from './components/usePurchaseOrder'
 
 fetchOrderList()
 </script>

@@ -18,7 +18,7 @@
         </div>
       </div>
 
-      <el-button type="success" :icon="Plus">添加</el-button>
+      <el-button @click="addDepDialog = true" type="success" :icon="Plus">添加</el-button>
     </el-card>
 
     <el-card>
@@ -28,11 +28,11 @@
         <el-table-column prop="tele" label="电话" align="center" width="150"/>
         <el-table-column prop="email" label="邮箱" align="center" width="170"/>
         <el-table-column label="状态" align="center" #default="{ row }" width="100">
-          <tag-status :title="row['statusText']" :status="Number(row['status'])" />
+          <tag-status :title="row['statusText']" :status="Number(row['status'])"/>
         </el-table-column>
         <el-table-column prop="description" label="描述" align="center"/>
         <el-table-column label="操作" width="140" align="center" #default="{ row }">
-          <el-button link size="small" type="primary">修改</el-button>
+          <el-button @click="initForm(row)" link size="small" type="primary">修改</el-button>
           <el-button @click="deleteDep(row)" link size="small" type="primary">删除</el-button>
         </el-table-column>
       </el-table>
@@ -48,6 +48,11 @@
         @current-change="handleCurrentChange"
       />
     </el-card>
+
+    <!-- 添加部门对话框 -->
+    <add-dialog/>
+    <!-- 修改部门对话框 -->
+    <update-dialog/>
   </div>
 </template>
 
@@ -55,6 +60,8 @@
 import Pagination from '@/components/Pagination/index.vue'
 import TagStatus from '@/components/tag-status/'
 import { Plus } from '@element-plus/icons-vue'
+import AddDialog from './components/AddDialog.vue'
+import UpdateDialog from './components/UpdateDialog.vue'
 // 获取数据
 import {
   list,
@@ -69,8 +76,12 @@ import {
   handleCurrentChange
 } from './useFetchDepList'
 
-// 删除想过
+// 删除部门
 import { deleteDep } from './useDeleteDep'
+// 添加部门对话框
+import { addDepDialog } from './components/useAddDep'
+// 修改部门
+import { initForm } from './components/useUpdateDep'
 
 fetchDepList()
 </script>

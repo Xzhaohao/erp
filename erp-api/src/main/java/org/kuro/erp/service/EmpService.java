@@ -56,4 +56,13 @@ public interface EmpService {
      * @param bo 员工参数
      */
     void update(Emp bo);
+
+
+    /**
+     * 查询指定部门有多少员工
+     *
+     * @param depId 部门ID
+     * @return 部门下的员工数量
+     */
+    Integer empDepNum(String depId);
 }

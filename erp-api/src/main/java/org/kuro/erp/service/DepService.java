@@ -1,5 +1,6 @@
 package org.kuro.erp.service;
 
+import org.kuro.erp.model.bo.DepBo;
 import org.kuro.erp.model.entity.Dep;
 import org.kuro.erp.model.page.PageResult;
 
@@ -25,4 +26,28 @@ public interface DepService {
      * @return 部门列表
      */
     List<String> allDep();
+
+
+    /**
+     * 添加部门
+     *
+     * @param bo 参数
+     */
+    void save(DepBo bo);
+
+
+    /**
+     * 修改部门
+     *
+     * @param bo 参数
+     */
+    void update(DepBo bo);
+
+
+    /**
+     * 删除部门
+     *
+     * @param id 部门ID
+     */
+    void deleteDep(String id);
 }

@@ -14,4 +14,6 @@ public interface EmpMapper extends Mapper<Emp> {
             @Param("name") String name, @Param("mobile") String mobile,
             @Param("gender") Integer gender, @Param("depName") String depName
     );
+
+    Integer empCountFromDep(String depId);
 }

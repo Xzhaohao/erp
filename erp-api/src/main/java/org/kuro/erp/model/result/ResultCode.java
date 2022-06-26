@@ -50,6 +50,7 @@ public enum ResultCode implements CustomizeResultCode {
     WECHAT_MOBILE_FAIL(500, "微信手机号解析失败！"),
 
     CAN_NOT_REPEAT_ADD(500, "不能重复添加！"),
+    DEP_HAS_EMP(500, "该部门下还有员工，无法删除！"),
 
     WECHAT_PAY_ERROR(500, "微信支付失败！"),
     ALI_PAY_ERROR(500, "支付宝支付失败！"),

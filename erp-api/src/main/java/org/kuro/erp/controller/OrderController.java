@@ -26,7 +26,7 @@ public class OrderController {
     public Result fetchOrderListApi(
             @PathVariable(name = "type") Integer orderType,
             @RequestBody @Valid QueryOrderBo bo
-            ) {
+    ) {
         PageResult<Order> list = orderService.queryOrderList(
                 orderType, bo.getPage(), bo.getLimit(), bo.getOrderState(),
                 bo.getCreater(), bo.getMinTotal(), bo.getMaxTotal(), bo.getMinCreateTime(),

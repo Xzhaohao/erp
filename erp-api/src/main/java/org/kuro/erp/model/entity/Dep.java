@@ -11,7 +11,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Data
-@Table(name = "t_emp")
+@Table(name = "t_dep")
 public class Dep implements Serializable {
 
     @Id

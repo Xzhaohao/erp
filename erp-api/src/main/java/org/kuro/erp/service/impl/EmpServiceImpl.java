@@ -88,6 +88,12 @@ public class EmpServiceImpl implements EmpService {
     }
 
 
+    @Override
+    public Integer empDepNum(String depId) {
+        return empMapper.empCountFromDep(depId);
+    }
+
+
     private EmpVo empSetRoles(Emp emp) {
         EmpVo vo = new EmpVo();
         BeanUtils.copyProperties(emp, vo);

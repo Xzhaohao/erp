@@ -3,16 +3,16 @@ package org.kuro.erp.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.kuro.erp.model.bo.DepBo;
 import org.kuro.erp.model.entity.Dep;
 import org.kuro.erp.model.page.PageResult;
 import org.kuro.erp.model.result.Result;
+import org.kuro.erp.model.result.ResultCode;
 import org.kuro.erp.service.DepService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -45,5 +45,29 @@ public class DepController {
     public Result allDepApi() {
         List<String> deps = depService.allDep();
         return Result.ok().data(deps);
+    }
+
+
+    @ApiOperation(value = "添加部门", notes = "添加部门")
+    @PostMapping("/save")
+    public Result saveDepApi(@RequestBody @Valid DepBo bo) {
+        depService.save(bo);
+        return Result.ok(ResultCode.ADD_SUCCESS);
+    }
+
+
+    @ApiOperation(value = "修改部门", notes = "修改部门")
+    @PutMapping("/update")
+    public Result updateDepApi(@RequestBody @Valid DepBo bo) {
+        depService.update(bo);
+        return Result.ok(ResultCode.UPDATE_SUCCESS);
+    }
+
+
+    @ApiOperation(value = "删除部门", notes = "删除部门")
+    @DeleteMapping("/delete/{id}")
+    public Result deleteDepApi(@PathVariable(name = "id") String id) {
+        depService.deleteDep(id);
+        return Result.ok(ResultCode.DELETE_SUCCESS);
     }
 }

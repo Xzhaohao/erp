@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.kuro.erp.mapper.MeetingMapper">
+
+    <select id="searchOfflineMeetingByPage" resultType="java.util.HashMap">
+        select mr.name, temp.meeting from t_meeting_room mr
+        left join (
+        select place,
+        concat(
+        '[',
+        group_concat(
+        JSON_OBJECT(
+        'start', date_format(start, '%H:%i'),
+        'end', date_format(end, '%H:%i'),
+        'status', `status`,
+        'time', ROUND(timestampdiff(MINUTE, concat(date, ' ', start), concat(date, ' ', end))/30)
+        )
+        ),
+        ']'
+        ) as meeting
+        from t_meeting
+        where type = 2 and status != 2 and date = #{date}
+        <if test="mold == '我的会议'">
+            and json_object(members, cast(#{userId} as VARCHAR))
+        </if>
+        group by place
+        ) temp on mr.name = temp.place
+        where mr.status = 0
+        limit #{page}, #{limit}
+    </select>
+
+    <select id="searchOfflineMeetingCount" resultType="java.lang.Integer">
+        select count(*)
+        from t_meeting_room
+        where status = 0
+    </select>
+
+</mapper>

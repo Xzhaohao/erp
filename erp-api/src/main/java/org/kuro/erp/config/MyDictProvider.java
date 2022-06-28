@@ -46,6 +46,14 @@ public class MyDictProvider implements DictProvider {
                 .add("7", "采购完成").add("8", "待入库")
                 .add("9", "入库中").add("10", "入库完成").build();
 
+        DictTypeVo t9 = DictTypeVo.newBuilder("meeting_type", "会议类型")
+                .add("1", "在线会议").add("2", "线下会议").build();
+
+        DictTypeVo t10 = DictTypeVo.newBuilder("meeting_status", "会议状态")
+                .add("1", "申请中").add("2", "审批未通过")
+                .add("3", "审批通过").add("4", "会议进行中")
+                .add("5", "会议结束").build();
+
         list.add(t1);
         list.add(t2);
         list.add(t3);
@@ -54,6 +62,8 @@ public class MyDictProvider implements DictProvider {
         list.add(t6);
         list.add(t7);
         list.add(t8);
+        list.add(t9);
+        list.add(t10);
         return list.stream().iterator();
     }
 }

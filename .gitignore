@@ -30,7 +30,6 @@ pnpm-debug.log*
 target
 log
 /log
-*.yml
 *.jks
 TomcatConfig.java
 
